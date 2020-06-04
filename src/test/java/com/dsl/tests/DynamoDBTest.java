@@ -29,4 +29,23 @@ public class DynamoDBTest {
         Assert.assertEquals(employee.Name, name);
 
     }
+
+    @Test
+    public void validateAccessToProdDB() {
+
+        //Test data
+        Number employeeId = 1;
+        String name = "Javeeth";
+
+        dynamoDBProxy = new DynamoDBProxy();
+        dynamoDBProxy.insertEmployee(employeeId, name);
+
+        Item item = dynamoDBProxy.getEmployee(employeeId, name);
+
+        Employee employee = new Gson().fromJson(item.toJSON(), Employee.class);
+
+        Assert.assertEquals(employee.Employee_ID, employeeId);
+        Assert.assertEquals(employee.Name, name);
+
+    }
 }

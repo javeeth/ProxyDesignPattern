@@ -15,7 +15,7 @@ public class BrowserTest {
     public void validateChromeBrowserLaunchActivity() {
         proxyBrowser = new ProxyBrowser("CHROME");
         driver = proxyBrowser.getDriver();
-        driver.get("https://www.google.com");
+        proxyBrowser.navigateToUrl("https://www.google.com");
         proxyBrowser.terminateDriver();
     }
 
@@ -23,9 +23,24 @@ public class BrowserTest {
     public void validateFireFoxBrowserLaunchActivity() {
         proxyBrowser = new ProxyBrowser("FIREFOX");
         driver = proxyBrowser.getDriver();
-        driver.get("https://www.google.com");
+        proxyBrowser.navigateToUrl("https://www.google.com");
         proxyBrowser.terminateDriver();
     }
 
+    @Test
+    public void validateInvalidBrowserException() {
+        proxyBrowser = new ProxyBrowser("CHROME1");
+        driver = proxyBrowser.getDriver();
+        proxyBrowser.navigateToUrl("https://www.google.com/");
+        proxyBrowser.terminateDriver();
+    }
+
+    @Test
+    public void validateBlockedSiteException() {
+        proxyBrowser = new ProxyBrowser("CHROME");
+        driver = proxyBrowser.getDriver();
+        proxyBrowser.navigateToUrl("https://www.youtube.com/");
+        proxyBrowser.terminateDriver();
+    }
 }
 

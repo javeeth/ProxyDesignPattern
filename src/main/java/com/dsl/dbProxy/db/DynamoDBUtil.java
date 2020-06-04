@@ -5,9 +5,9 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.*;
 import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
-import com.dsl.dbProxy.abstraction.DBUtil;
+import com.dsl.dbProxy.abstraction.DBInterface;
 
-public class DynamoDBUtil implements DBUtil {
+public class DynamoDBUtil implements DBInterface {
 
     AmazonDynamoDB client;
     DynamoDB dynamoDB;
